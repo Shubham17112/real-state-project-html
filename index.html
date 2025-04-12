@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prestige Properties | Luxury Real Estate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0A1D37;
+            --gold: #D4AF37;
+            --white: #FFFFFF;
+            --light-gray: #D9D9D9;
+            --dark-gray: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--navy);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--white);
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(10, 29, 55, 0.7), rgba(10, 29, 55, 0.7)), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--gold);
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            background-color: #c19b2e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            margin-left: 15px;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--gold);
+            color: var(--navy);
+        }
+
+        /* Featured Properties */
+        .featured {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--navy);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--gold);
+        }
+
+        .section-title p {
+            color: var(--light-gray);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .property-card {
+            background-color: var(--white);
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .property-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .property-img {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .property-info {
+            padding: 25px;
+        }
+
+        .property-price {
+            color: var(--gold);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .property-address {
+            font-size: 18px;
+            color: var(--navy);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .property-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            color: var(--light-gray);
+        }
+
+        .property-details span {
+            display: flex;
+            align-items: center;
+        }
+
+        .view-btn {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            background-color: var(--navy);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn:hover {
+            background-color: var(--gold);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background-color: #f9f9f9;
+        }
+
+        .testimonials-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .testimonial {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            max-width: 350px;
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 60px;
+            color: var(--gold);
+            opacity: 0.2;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .testimonial-text {
+            margin-bottom: 20px;
+            font-style: italic;
+            z-index: 1;
+            position: relative;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            color: var(--navy);
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: var(--light-gray);
+            font-size: 14px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info h3 {
+            color: var(--navy);
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 30px;
+            color: var(--dark-gray);
+        }
+
+        .contact-details {
+            margin-bottom: 30px;
+        }
+
+        .contact-details div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .contact-details span {
+            color: var(--gold);
+            margin-right: 15px;
+            font-size: 20px;
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--navy);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 3px;
+            font-family: 'Raleway', sans-serif;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background-color: var(--gold);
+            color: var(--navy);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            font-family: 'Raleway', sans-serif;
+        }
+
+        .submit-btn:hover {
+            background-color: #c19b2e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-col h3 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--gold);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-gray);
+            font-size: 14px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .btn {
+                display: block;
+                margin-bottom: 15px;
+                width: 100%;
+            }
+
+            .btn-outline {
+                margin-left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Prestige<span>Properties</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Properties</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">☰</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Discover Extraordinary Luxury Properties</h1>
+            <p>Experience unparalleled elegance and sophistication in our exclusive collection of premium real estate offerings tailored to discerning clients.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn">Explore Properties</a>
+                <a href="#" class="btn btn-outline">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties -->
+    <section class="featured">
+        <div class="container">
+            <div class="section-title">
+                <h2>Exclusive Listings</h2>
+                <p>Discover our handpicked selection of the most prestigious properties currently available</p>
+            </div>
+            <div class="properties-grid">
+                <!-- Property 1 -->
+                <div class="property-card">
+                    <div class="property-img" style="background-image: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="property-info">
+                        <div class="property-price">$4,500,000</div>
+                        <h3 class="property-address">Oceanfront Villa, Malibu</h3>
+                        <div class="property-details">
+                            <span>5 Bedrooms</span>
+                            <span>6 Bathrooms</span>
+                            <span>7,200 Sq Ft</span>
+                        </div>
+                        <a href="#" class="view-btn">View Property</a>
+                    </div>
+                </div>
+                
+                <!-- Property 2 -->
+                <div class="property-card">
+                    <div class="property-img" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="property-info">
+                        <div class="property-price">$3,200,000</div>
+                        <h3 class="property-address">Modern Penthouse, Manhattan</h3>
+                        <div class="property-details">
+                            <span>3 Bedrooms</span>
+                            <span>3.5 Bathrooms</span>
+                            <span>4,100 Sq Ft</span>
+                        </div>
+                        <a href="#" class="view-btn">View Property</a>
+                    </div>
+                </div>
+                
+                <!-- Property 3 -->
+                <div class="property-card">
+                    <div class="property-img" style="background-image: url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="property-info">
+                        <div class="property-price">$5,800,000</div>
+                        <h3 class="property-address">Hillside Estate, Beverly Hills</h3>
+                        <div class="property-details">
+                            <span>6 Bedrooms</span>
+                            <span>8 Bathrooms</span>
+                            <span>9,500 Sq Ft</span>
+                        </div>
+                        <a href="#" class="view-btn">View Property</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Client Testimonials</h2>
+                <p>What our distinguished clients have to say about their experience with us</p>
+            </div>
+            <div class="testimonials-container">
+                <!-- Testimonial 1 -->
+                <div class="testimonial">
+                    <p class="testimonial-text">Working with Prestige Properties was an absolute pleasure. Their attention to detail and understanding of our specific requirements led us to find our dream home.</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/48.jpg" alt="Client">
+                        <div class="author-info">
+                            <h4>Sophia Anderson</h4>
+                            <p>CEO, Anderson Enterprises</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial">
+                    <p class="testimonial-text">The team at Prestige Properties exceeded all expectations. Their market knowledge and negotiation skills secured us an exceptional property at a favorable price.</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client">
+                        <div class="author-info">
+                            <h4>James Richardson</h4>
+                            <p>Investment Banker</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial">
+                    <p class="testimonial-text">From the initial consultation to the final closing, Prestige Properties demonstrated unparalleled professionalism and dedication to ensuring our complete satisfaction.</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Client">
+                        <div class="author-info">
+                            <h4>Elena Martinez</h4>
+                            <p>Art Collector</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Reach out to our team of luxury real estate specialists</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p>Our dedicated team of luxury real estate specialists is ready to assist you in finding your perfect property or answering any questions you may have.</p>
+                    <div class="contact-details">
+                        <div>
+                            <span>📍</span>
+                            <p>123 Luxury Lane, Beverly Hills, CA 90210</p>
+                        </div>
+                        <div>
+                            <span>📞</span>
+                            <p>+1 (310) 555-1234</p>
+                        </div>
+                        <div>
+                            <span>✉️</span>
+                            <p>info@prestigeproperties.com</p>
+                        </div>
+                    </div>
+                    <h3>Office Hours</h3>
+                    <p>Monday - Friday: 9:00 AM - 6:00 PM<br>
+                    Saturday: 10:00 AM - 4:00 PM<br>
+                    Sunday: By Appointment Only</p>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="interest">I'm Interested In</label>
+                            <select id="interest" class="form-control">
+                                <option value="buying">Buying a Property</option>
+                                <option value="selling">Selling a Property</option>
+                                <option value="renting">Renting a Property</option>
+                                <option value="investment">Investment Opportunities</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Prestige Properties</h3>
+                    <p>Specializing in luxury real estate for discerning clients worldwide. Our expertise and personalized service ensure an exceptional experience in finding your dream property.</p>
+                    <div class="social-links">
+                        <a href="#">FB</a>
+                        <a href="#">IG</a>
+                        <a href="#">TW</a>
+                        <a href="#">LI</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Properties</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Property Types</h3>
+                    <ul>
+                        <li><a href="#">Luxury Homes</a></li>
+                        <li><a href="#">Penthouses</a></li>
+                        <li><a href="#">Waterfront Properties</a></li>
+                        <li><a href="#">Estates & Mansions</a></li>
+                        <li><a href="#">International Properties</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to receive updates on new exclusive properties and luxury market insights.</p>
+                    <form>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email Address" class="form-control" required>
+                        </div>
+                        <button type="submit" class="submit-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Prestige Properties. All Rights Reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

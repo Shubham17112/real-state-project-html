@@ -26,3 +26,4 @@ A modern luxury real estate website template designed to showcase high-end prope
 
 https://github.com/user-attachments/assets/4bd11c0e-aed0-466e-8124-d9110a4bf5c6
 
+https://shubham17112.github.io/real-state-project-html/
